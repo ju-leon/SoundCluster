@@ -47,6 +47,17 @@ for file in tqdm(f):
 print('Nodes: ' + str(len(G.nodes)))
 print('Edges: ' + str(len(G.edges)))
 
+#Cleaning edges with little correlation to reduce graph size
+for u, v, w in list(G.edges(data=True)):
+    if w['weight'] < 4:
+        G.remove_edge(u, v)
+
+G.remove_nodes_from(list(nx.isolates(G)))
+
+print('Nodes: ' + str(len(G.nodes)))
+print('Edges: ' + str(len(G.edges)))
+
+
 nx.draw(G,pos=nx.spring_layout(G))
 
 print("Finished")
