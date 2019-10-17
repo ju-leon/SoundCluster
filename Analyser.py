@@ -1,8 +1,6 @@
 from os import walk
 import networkx as nx
-import pylab as plt
 from tqdm import tqdm
-import csv
 
 f = []
 for (dirpath, dirnames, filenames) in walk('playlists_name'):
@@ -48,3 +46,7 @@ for file in tqdm(f):
 
 print('Nodes: ' + str(len(G.nodes)))
 print('Edges: ' + str(len(G.edges)))
+
+nx.draw(G,pos=nx.spring_layout(G))
+
+print("Finished")
